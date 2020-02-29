@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "aws s3 sync out s3://static.nexuswar.online --acl public-read"
+    "deploy:s3": "aws s3 sync out s3://static.nexuswar.online --acl public-read",
+    "deploy": "yarn build && yarn next export && yarn deploy:s3"
   },
   "dependencies": {
     "next": "9.2.2",
+    "next-images": "^1.3.1",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "styled-components": "^5.0.1"
