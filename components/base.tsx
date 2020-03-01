@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { Faction } from '../utils/types'
+import { Faction } from './types'
 
-import steelfire from '../assets/base-steelfire.png'
-import nightclaw from '../assets/base-nightclaw.png'
-import lions from '../assets/base-lion.png'
+import steelfire from './assets/base-steelfire.png'
+import nightclaw from './assets/base-nightclaw.png'
+import lions from './assets/base-lion.png'
 
 function Base({faction}) {
   const imagePath = {
