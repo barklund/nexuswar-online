@@ -4,10 +4,11 @@ import { useContext } from 'react'
 import MapPNG from './assets/map.png'
 import Node from './node'
 import Settings from './settings'
+import Edit from './edit'
 import Context from './context'
 
 function Map() {
-  const { state: { nodes }, actions: { clearCurrentNode }} = useContext(Context);
+  const { state: { nodes, currentNode }, actions: { clearCurrentNode }} = useContext(Context);
   return (
     <Wrapper>
       <Background onClick={() => clearCurrentNode()} />
@@ -15,6 +16,7 @@ function Map() {
       {nodes.map((node) => (
         <Node key={node.id} node={node} />
       ))}
+      {currentNode && <Edit />}
     </Wrapper>
   )
 }

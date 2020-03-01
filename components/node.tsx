@@ -15,6 +15,7 @@ const TOP_OFFSET_ODD = 0;
 const TOP_OFFSET_EVEN = TOP_SPACING / 2;
 
 function getColor({id, hasBase, faction}:NodeType, isSelected:boolean):string {
+  console.log("color of",id,hasBase,faction,"is?");
   if (isSelected) {
     return 'rgba(37, 255, 37, .5)';
   }
