@@ -2,10 +2,10 @@ import { useState, useCallback, useEffect } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 
-import NexusMap from './components/map'
+import Map from './components/map'
 
 function Home() {
-  const [config, setConfig] = useState()
+  const [config, setConfig] = useState<string>()
 
   useEffect(() => {
     if (process.browser) {
@@ -13,7 +13,7 @@ function Home() {
     }
   }, [process.browser])
 
-  const updateConfig = useCallback()
+  const updateConfig = useCallback(() => {}, [])
 
   return (
     <div className="container">
@@ -40,7 +40,7 @@ function Home() {
         <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
         <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
-        <link href="https://fonts.googleapis.com/css?family=Expletus+Sans:400i,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,900i&amp;isplay=swap" rel="stylesheet" />
       </Head>
 
       <Main>
@@ -48,7 +48,7 @@ function Home() {
           War of the Nexus!
         </Title>
 
-        <NexusMap config={config} onConfig={updateConfig} />
+        <Map config={config} onConfig={updateConfig} />
       </Main>
 
       <style jsx global>{`
@@ -58,7 +58,7 @@ function Home() {
           color: white;
           padding: 0;
           margin: 0;
-          font-family: 'Expletus Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+          font-family: 'Raleway', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
             Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         }
 

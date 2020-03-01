@@ -1,5 +1,8 @@
-
 import styled from 'styled-components'
+import { Faction, NodeType } from '../types'
+import Base from './base'
+import Tank from './tank'
+import Soldier from './soldier'
 
 const LEFT_SPACING = (634-72)/6;
 const LEFT_START = 73 - LEFT_SPACING;
@@ -8,13 +11,36 @@ const TOP_START = 85-TOP_SPACING*1.5;
 const TOP_OFFSET_ODD = 0;
 const TOP_OFFSET_EVEN = TOP_SPACING / 2;
 
-function Node({id, row, col}) {
-  const number = id?.startsWith('position') ? parseInt(id.substr(8)) : null
+function getColor({id, hasBase, faction}:NodeType):string {
+  if (id <= 0 || !hasBase) {
+    return 'transparent';
+  }
+  switch (faction) {
+    case Faction.Lions:
+      return 'rgba(255, 41, 187, .5)';
+    case Faction.Steelfire:
+      return 'rgba(50, 0, 214, .5)';
+    case Faction.Nightclaw:
+      return 'rgba(118, 0, 122, .5)';
+    default:
+      return 'transparent';
+  }
+}
+
+function Node({node}) {
+  const {id, row, col, hasBase, tanks, soldiers, faction} = node
+  const number = id > 0 ? id : null
   const left = LEFT_START + col * LEFT_SPACING
   const top = TOP_START + row * TOP_SPACING + (col % 2 ? TOP_OFFSET_ODD : TOP_OFFSET_EVEN)
+
+  const hasSoldiers = soldiers > 0;
+  const hasTanks = tanks > 0;
+  const showBase = hasBase && id >= 0;
   return (
-    <Background left={left} top={top} color={number ? 'rgba(255,255,0,0.3)' : 'transparent'}>
-      {number}
+    <Background left={left} top={top} color={getColor(node)}>
+      {showBase && <Base faction={faction} />}
+      {hasTanks && <Tank faction={faction} count={tanks} />}
+      {hasSoldiers && <Soldier faction={faction} count={soldiers} isCentered={!hasTanks} />}
     </Background>
   )
 }
@@ -31,6 +57,7 @@ const Background = styled.div.attrs(({left, top}) => ({
   margin-left: -28px;
   height: 98px;
   margin-top: -49px;
+  padding-top: 12px;
   text-align: center;
   font-size: 44px;
   display: flex;
