@@ -4,13 +4,14 @@ import { Faction } from './types'
 import steelfire from './assets/tank-steelfire.png'
 import nightclaw from './assets/tank-nightclaw.png'
 import lions from './assets/tank-lion.png'
+import neutral from './assets/tank.png'
 
 function Tank({faction, count}) {
   const imagePath = {
     [Faction.Steelfire]: steelfire,
     [Faction.Nightclaw]: nightclaw,
     [Faction.Lions]: lions,
-  }[faction]
+  }[faction] || neutral
   return (
     <Wrapper>
       <Element src={imagePath} />
@@ -21,9 +22,10 @@ function Tank({faction, count}) {
 
 const Wrapper = styled.div`
   position: absolute;
-  left: -10px;
+  left: 17px;
   bottom: -15px;
   z-index: 1;
+  pointer-events: none;
 `
 
 const Element = styled.img`

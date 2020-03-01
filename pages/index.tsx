@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 
-import Map from '../components/map'
+import App from '../components/app'
 
 function Home() {
   const [config, setConfig] = useState<string>()
@@ -48,7 +48,7 @@ function Home() {
           War of the Nexus!
         </Title>
 
-        <Map config={config} onConfig={updateConfig} />
+        <App config={config} onConfig={updateConfig} />
       </Main>
 
       <style jsx global>{`

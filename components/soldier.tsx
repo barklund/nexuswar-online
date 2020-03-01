@@ -4,13 +4,14 @@ import { Faction } from './types'
 import steelfire from './assets/soldier-steelfire.png'
 import nightclaw from './assets/soldier-nightclaw.png'
 import lions from './assets/soldier-lion.png'
+import neutral from './assets/soldier.png'
 
 function Soldier({faction, count, isCentered}) {
   const imagePath = {
     [Faction.Steelfire]: steelfire,
     [Faction.Nightclaw]: nightclaw,
     [Faction.Lions]: lions,
-  }[faction]
+  }[faction] || neutral
   return (
     <Wrapper isCentered={isCentered}>
       <Element src={imagePath} />
@@ -21,9 +22,10 @@ function Soldier({faction, count, isCentered}) {
 
 const Wrapper = styled.div`
   position: absolute;
-  left: ${({isCentered}) => isCentered ? 7 : -20}px;
+  left: ${({isCentered}) => isCentered ? 34 : 7}px;
   top: ${({isCentered}) => isCentered ? 12 : 20}px;
   z-index: 1;
+  pointer-events: none;
 `
 
 const Element = styled.img`
