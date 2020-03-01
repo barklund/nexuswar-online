@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Faction, NodeType } from '../types'
+import { Faction, NodeType } from '../utils/types'
 import Base from './base'
 import Tank from './tank'
 import Soldier from './soldier'

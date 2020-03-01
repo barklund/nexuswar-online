@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import MapPNG from '../assets/map.png'
 import Node from './node'
-import { Faction, NodeType } from '../types'
+import { Faction, NodeType } from '../utils/types'
 
 const nodes:Array<NodeType> = [
   {id: -1, row: 1, col: 4, faction: Faction.Nightclaw, hasBase: true},

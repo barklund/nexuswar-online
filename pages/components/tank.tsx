@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Faction } from '../types'
+import { Faction } from '../utils/types'
 
 import steelfire from '../assets/tank-steelfire.png'
 import nightclaw from '../assets/tank-nightclaw.png'
