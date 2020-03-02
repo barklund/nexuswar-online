@@ -8,7 +8,7 @@
     "start": "next start",
     "deploy:s3": "aws s3 sync out s3://static.nexuswar.online --acl public-read",
     "deploy:invalidate": "aws cloudfront create-invalidation --distribution-id E1UFOX55D8XMS6 --paths '/*'",
-    "deploy": "yarn build && yarn next export && yarn deploy:s3 && yarn invalidate"
+    "deploy": "yarn build && yarn next export && yarn deploy:s3 && yarn deploy:invalidate"
   },
   "dependencies": {
     "next": "9.2.2",
