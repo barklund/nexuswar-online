@@ -4,6 +4,8 @@ import { Faction } from './types'
 
 import Context from './context'
 
+const MAX = 80;
+
 function Edit() {
   const {
     state: { currentNode },
@@ -16,7 +18,7 @@ function Edit() {
     {id: Faction.Steelfire, label: 'Steelfire'},
   ]
   const handleChange = (prop) => (evt) => {
-    const value = evt.target.type === 'checkbox' ? evt.target.checked : parseInt(evt.target.value); 
+    const value = evt.target.type === 'checkbox' ? evt.target.checked : Math.max(0, Math.min(MAX, parseInt(evt.target.value)));
     updateCurrentNode({[prop]: value});
   };
   return (
@@ -25,7 +27,7 @@ function Edit() {
         Faction:
         <Input as="select" value={currentNode.faction} onChange={handleChange('faction')}>
           {factions.map(({id,label}) => (
-            <option value={id}>{label}</option> 
+            <option key={id} value={id}>{label}</option> 
           ))}
         </Input>
       </Label>
@@ -35,11 +37,11 @@ function Edit() {
       </Label>
       <Label>
         Soldiers:
-        <Input type="number" value={currentNode.soldiers} onChange={handleChange('soldiers')} />
+        <Input type="number" max={MAX} value={currentNode.soldiers} onChange={handleChange('soldiers')} />
       </Label>
       <Label>
         Tanks:
-        <Input type="number" value={currentNode.tanks} onChange={handleChange('tanks')} />
+        <Input type="number" max={MAX} value={currentNode.tanks} onChange={handleChange('tanks')} />
       </Label>
     </Wrapper>
   )

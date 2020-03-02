@@ -15,11 +15,10 @@ const TOP_OFFSET_ODD = 0;
 const TOP_OFFSET_EVEN = TOP_SPACING / 2;
 
 function getColor({id, hasBase, faction}:NodeType, isSelected:boolean):string {
-  console.log("color of",id,hasBase,faction,"is?");
   if (isSelected) {
     return 'rgba(37, 255, 37, .5)';
   }
-  if (id <= 0 || !hasBase) {
+  if (id >= 50 || !hasBase) {
     return 'transparent';
   }
   switch (faction) {
@@ -40,13 +39,13 @@ function Node({node}) {
     actions: { setCurrentNodeById },
   } = useContext(Context);
   const {id, row, col, hasBase, tanks, soldiers, faction} = node
-  const number = showNumbers && id > 0 ? id : null
+  const number = showNumbers && id < 50 ? id : null
   const left = LEFT_START + col * LEFT_SPACING
   const top = TOP_START + row * TOP_SPACING + (col % 2 ? TOP_OFFSET_ODD : TOP_OFFSET_EVEN)
 
   const hasSoldiers = soldiers > 0;
   const hasTanks = tanks > 0;
-  const showBase = hasBase && id >= 0;
+  const showBase = hasBase && id < 50;
   const isSelected = currentNode === node;
 
   const handleClick = () => setCurrentNodeById(id)

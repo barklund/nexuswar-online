@@ -37,7 +37,8 @@ const Text = styled.span`
   text-align: center;
   font-size: 40px;
   color: white;
-  left: 10px;
+  left: -30px;
+  width: 105px;
   top: 20px;
   font-style: italic;
   font-weight: 900;

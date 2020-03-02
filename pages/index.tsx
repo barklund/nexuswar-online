@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import styled from 'styled-components'
 
 import App from '../components/app'
@@ -10,10 +11,16 @@ function Home() {
   useEffect(() => {
     if (process.browser) {
       setConfig(window.location.hash.substr(1))
+      window.addEventListener('popstate', () => {
+        setConfig(window.location.hash.substr(1));
+      })
     }
   }, [process.browser])
 
-  const updateConfig = useCallback(() => {}, [])
+  const updateConfig = useCallback((newConfig) => {
+    const url = `/#${newConfig}`
+    Router.push(url)
+  }, [])
 
   return (
     <div className="container">
