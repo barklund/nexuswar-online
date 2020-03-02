@@ -45,7 +45,7 @@ function Node({node}) {
 
   const hasSoldiers = soldiers > 0;
   const hasTanks = tanks > 0;
-  const showBase = hasBase && id < 50;
+  const showBase = hasBase && id <= 50;
   const isSelected = currentNode === node;
 
   const handleClick = () => setCurrentNodeById(id)
