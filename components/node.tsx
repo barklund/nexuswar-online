@@ -14,11 +14,12 @@ const TOP_START = 85-TOP_SPACING*1.5;
 const TOP_OFFSET_ODD = 0;
 const TOP_OFFSET_EVEN = TOP_SPACING / 2;
 
-function getColor({id, hasBase, faction}:NodeType, isSelected:boolean):string {
+function getColor({id, hasBase, tanks, faction}:NodeType, isSelected:boolean):string {
   if (isSelected) {
     return 'rgba(37, 255, 37, .5)';
   }
-  if (id >= 50 || !hasBase) {
+  const hasFactionColor = hasBase || tanks > 0
+  if (id >= 50 || !hasFactionColor) {
     return 'transparent';
   }
   switch (faction) {
