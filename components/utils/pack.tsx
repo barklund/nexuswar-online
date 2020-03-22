@@ -1,6 +1,6 @@
 import { NodeType } from '../types'
 
-const visible = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\(){}[]<>!;:,.$%&='
+const visible = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\(){}[]*-!;:,.$%&='
 
 function char(number) {
 	if (number >= visible.length) {
