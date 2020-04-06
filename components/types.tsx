@@ -3,6 +3,7 @@ export enum Faction {
 	Steelfire,
 	Lions,
 	Nightclaw,
+	Insectoids,
 }
 
 export type NodeType = {

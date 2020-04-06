@@ -5,16 +5,18 @@ import steelfire from './assets/soldier-steelfire.png'
 import nightclaw from './assets/soldier-nightclaw.png'
 import lions from './assets/soldier-lion.png'
 import neutral from './assets/soldier.png'
+import insectoids from './assets/insectoids.png'
 
 function Soldier({faction, count, isCentered}) {
   const imagePath = {
     [Faction.Steelfire]: steelfire,
     [Faction.Nightclaw]: nightclaw,
     [Faction.Lions]: lions,
+    [Faction.Insectoids]: insectoids,
   }[faction] || neutral
   return (
     <Wrapper isCentered={isCentered}>
-      <Element src={imagePath} />
+      <Element faction={faction} src={imagePath} />
       {count > 1 && <Text>{count}</Text>}
     </Wrapper>
   )
@@ -29,7 +31,10 @@ const Wrapper = styled.div`
 `
 
 const Element = styled.img`
-  width: 45px;
+  width: ${({faction}) => faction === Faction.Insectoids ? 80 : 45}px;
+  position: relative;
+  left: ${({faction}) => faction === Faction.Insectoids ? -25 : 0}px;
+  top: ${({faction}) => faction === Faction.Insectoids ? 5 : 0}px;
 `
 
 const Text = styled.span`

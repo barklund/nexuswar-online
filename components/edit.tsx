@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { Faction } from './types'
 
@@ -16,11 +16,17 @@ function Edit() {
     {id: Faction.Lions, label: 'Lions'},
     {id: Faction.Nightclaw, label: 'Nightclaw'},
     {id: Faction.Steelfire, label: 'Steelfire'},
+    {id: Faction.Insectoids, label: 'Insectoids'},
   ]
   const handleChange = (prop) => (evt) => {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : Math.max(0, Math.min(MAX, parseInt(evt.target.value)));
     updateCurrentNode({[prop]: value});
   };
+  useEffect(() => {
+    if (currentNode.faction === Faction.Insectoids) {
+      updateCurrentNode({hasBase: false, tanks: 0});
+    }
+  }, [currentNode.faction])
   return (
     <Wrapper>
       <Label>
@@ -31,18 +37,28 @@ function Edit() {
           ))}
         </Input>
       </Label>
-      <Label>
-        Base?
-        <Input type="checkbox" checked={currentNode.hasBase} onChange={handleChange('hasBase')} />
-      </Label>
-      <Label>
-        Soldiers:
-        <Input type="number" max={MAX} value={currentNode.soldiers} onChange={handleChange('soldiers')} />
-      </Label>
-      <Label>
-        Tanks:
-        <Input type="number" max={MAX} value={currentNode.tanks} onChange={handleChange('tanks')} />
-      </Label>
+      {currentNode.faction !== Faction.Insectoids && (
+        <>
+          <Label>
+            Base?
+            <Input type="checkbox" checked={currentNode.hasBase} onChange={handleChange('hasBase')} />
+          </Label>
+          <Label>
+            Soldiers:
+            <Input type="number" max={MAX} value={currentNode.soldiers} onChange={handleChange('soldiers')} />
+          </Label>
+          <Label>
+            Tanks:
+            <Input type="number" max={MAX} value={currentNode.tanks} onChange={handleChange('tanks')} />
+          </Label>
+        </>
+      )}
+      {currentNode.faction === Faction.Insectoids && (
+        <Label>
+          Bugs:
+          <Input type="number" max={MAX} value={currentNode.soldiers} onChange={handleChange('soldiers')} />
+        </Label>
+      )}
     </Wrapper>
   )
 }
